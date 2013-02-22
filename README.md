@@ -66,7 +66,7 @@ An example of a fcrepo4 [Sequencer](https://docs.jboss.org/author/display/MODE/S
   It is, at least, mostly boilerplate. In the above, you should only need to change
   
   1. the name of the proxy class (e.g. `MySequencerProxy`)
-  2. the filename (e.g. `my_sequencer`)
+  2. the filename (e.g. `my_sequencer.rb`)
   3. the instantiation of your Ruby class (e.g. `"MySequencer.new"`
 
 ### Testing and building
