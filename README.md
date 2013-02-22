@@ -9,21 +9,19 @@ An example of a fcrepo4 [Sequencer](https://docs.jboss.org/author/display/MODE/S
 1. Provide a Ruby sequencer class that extends [Sequencer](http://docs.jboss.org/modeshape/3.1.2.Final/api/org/modeshape/jcr/api/sequencer/Sequencer.html) in `src/main/ruby`, e.g.:
 
   ```ruby
-  require 'java'
-
-  java_import 'org.modeshape.jcr.api.sequencer.Sequencer'
-  java_import 'org.modeshape.jcr.api.JcrTools'
-  java_package 'org.fcrepo.example'
-
-  class ReverseContentSequencer < Sequencer
+    require 'java'
+  
+    java_import 'org.modeshape.jcr.api.sequencer.Sequencer'
+    java_import 'org.modeshape.jcr.api.JcrTools'
+    java_package 'org.fcrepo.example'
+  
+    class ReverseContentSequencer < Sequencer
       def execute property, outputNode, context
-
-      n = outputNode.addNode("reversed-content", "nt:resource")
-      n.setProperty("jcr:data", property.getString().reverse )
-
-      return true
+        n = outputNode.addNode("reversed-content", "nt:resource")
+        n.setProperty("jcr:data", property.getString().reverse )
+        return true
+      end
     end
-  end
   ```
 
 2. Provide a Java wrapper/proxy class for your Ruby sequencer, e.g.:
