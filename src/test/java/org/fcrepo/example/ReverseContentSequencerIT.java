@@ -1,30 +1,27 @@
-package org.fcrepo;
+package org.fcrepo.example;
+
+import static java.lang.Thread.sleep;
+import static org.junit.Assert.assertEquals;
+
+import javax.inject.Inject;
+import javax.jcr.Node;
+import javax.jcr.Repository;
+import javax.jcr.Session;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.inject.Inject;
-import javax.jcr.*;
-
-import java.io.ByteArrayInputStream;
-
-import static java.lang.Thread.sleep;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"/spring-test/master.xml"})
-public class TestJrubySequencerExample {
+public class ReverseContentSequencerIT {
 
     @Inject
     private Repository repository;
 
-
-
     @Test
-    public void testJrubySequencerJavaClass() throws RepositoryException, InterruptedException {
+    public void test() throws Exception {
 
         Session session = repository.login();
         Node root = session.getRootNode().addNode("jruby");
@@ -39,11 +36,12 @@ public class TestJrubySequencerExample {
 
         session = repository.login();
 
-        Node ni = session.getRootNode().getNode("jruby").getNode("should-be-decorated.example").getNode("reversed-content");
+        Node ni =
+                session.getRootNode().getNode("jruby").getNode(
+                        "should-be-decorated.example").getNode(
+                        "reversed-content");
 
         assertEquals(ni.getProperty("jcr:data").getString(), "fdsa");
-
-
-
     }
+
 }

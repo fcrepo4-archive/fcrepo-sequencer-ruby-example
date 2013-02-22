@@ -30,10 +30,10 @@
         "sequencers" : {
             "JRuby Visitor" : {
                 "description" : "Example fcrepo sequencer in JRuby'",
-                "classname" : "org.fcrepo.JrubyShimSequencer",
+                "classname" : "org.fcrepo.example.ReverseContentSequencerProxy",
                 "pathExpressions" : ["fedora:/jruby/(.*)[jcr:content/@jcr:data] => fedora:/jruby/$1"]
             }
         }
     },
-	"node-types" : ["fedora-node-types.cnd"]
+"node-types" : ["fedora-node-types.cnd"]
 }
