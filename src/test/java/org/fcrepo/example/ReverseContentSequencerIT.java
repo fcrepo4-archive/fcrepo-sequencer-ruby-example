@@ -13,15 +13,30 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+/**
+ * 
+ * Integration test for ReverseContentSequencer that brings up a repository
+ * instance.
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"/spring-test/master.xml"})
 public class ReverseContentSequencerIT {
 
+    /**
+     * The injected repository instance.
+     */
     @Inject
     private Repository repository;
 
+    /**
+     * Tests that when we add a {@Node}, and set a property, our sequencer
+     * adds a "reversed-content" node that has the text reversed.
+     * 
+     * @throws Exception
+     */
     @Test
-    public void test() throws Exception {
+    public final void test() throws Exception {
 
         Session session = repository.login();
         Node root = session.getRootNode().addNode("jruby");
